@@ -1,0 +1,62 @@
+"Project-Id-Version: Contact Form 7 CRM in Cloud\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-01-26 18:02+0000\n"
+"PO-Revision-Date: 2020-01-26 18:06+0000\n"
+"Language-Team: English\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Description of the plugin
+msgid "Connect Contact Forms 7 to CRM in Cloud."
+msgstr ""
+
+#. Name of the plugin
+msgid "Contact Form 7 CRM in Cloud"
+msgstr ""
+
+msgid "Send to CRM in Cloud?"
+msgstr ""
+
+msgid "Skip send mail?"
+msgstr ""
+
+msgid "CRM in Cloud Integration"
+msgstr ""
+
+msgid ""
+"Contact Form 7 CRM in Cloud integrations requires CONTACT FORM 7 Plugin to "
+"be installed and active"
+msgstr ""
+
+msgid "Verify key"
+msgstr ""
+
+msgid "generate JSON"
+msgstr ""
+
+msgid "DEBUG LOG ( View last transmission attempt )"
+msgstr ""
+
+msgid "LAST API CALL"
+msgstr ""
+
+msgid "Called url"
+msgstr ""
+
+msgid "Params"
+msgstr ""
+
+msgid "Error logs"
+msgstr ""
+
+msgid "Base url"
+msgstr ""
+
+msgid "Remote server result"
+msgstr ""
+
+msgid "CRM Api Key"
+msgstr ""

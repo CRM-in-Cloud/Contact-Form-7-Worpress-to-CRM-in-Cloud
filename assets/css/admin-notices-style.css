@@ -1,0 +1,30 @@
+.cf7_row {
+    clear: both;
+    margin: 10px 0;
+}
+.cf7_row textarea{
+    width:100%;
+}
+
+.cf7-label-in {
+    min-width: 80px;
+    display: inline-block;
+}
+
+#verify_api_key_result {
+    margin: 6px 10px;
+    font-size: 14px;  
+    display: inline-block;
+}
+
+.json_mailtag {
+    margin:0 2px;
+}
+.debug-log-wrap{
+    display:none;
+}
+
+.cf7_crm_in_cloud_mapper{
+    display: none;
+}
+
