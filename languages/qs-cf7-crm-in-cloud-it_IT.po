@@ -48,7 +48,7 @@ msgid "DEBUG LOG ( View last transmission attempt )"
 msgstr "DEBUG LOG ( Mosta l'ultimo tentativo di trasmissione )"
 
 msgid "LAST API CALL"
-msgstr "ULTIMA CIAMATA API"
+msgstr "ULTIMA CHIAMATA API"
 
 msgid "Called url"
 msgstr "Url chiamato"
