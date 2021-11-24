@@ -173,13 +173,15 @@ class QS_CF7_crm_in_cloud_admin{
       "emails": "[text-email]",
       "phone": "[text-phonenumber]",
       "note": "[text-note]",
-      "privacySettings": [
+      "privacySettings": [{
         "checked": true,
         "checkedDate": "' . gmdate("Y-m-d\TH:i:s.00\Z") . '",
         "privacyTypeManagementId": "code"
-      ],
+      }],
       "source": "website"
     }' , '');
+
+    
     //if($wpcf7_crm_in_cloud_data["api_key"] !== '')
     //  $json_schema = $this->get_schema($wpcf7_crm_in_cloud_data["api_key"]);
 ?>
@@ -295,8 +297,16 @@ endif;
     $properties['wpcf7_crm_in_cloud_data']     = isset( $_POST["wpcf7-sf"] ) ? $_POST["wpcf7-sf"] : '';
     $properties['wpcf7_crm_in_cloud_data_map'] = isset( $_POST["qs_wpcf7_crm_in_cloud_map"] ) ? $_POST["qs_wpcf7_crm_in_cloud_map"] : '';
     $properties['template']           = isset( $_POST["template"] ) ? $_POST["template"] : '';
-    $properties['json_template']      = isset( $_POST["json_template"] ) ? $_POST["json_template"] : '';
+    $properties['json_template']  = isset( $_POST["json_template"] ) ? $_POST["json_template"] : '';
 
+    //$record_type = isset( $qs_cf7_data['input_type'] ) ? $qs_cf7_data['input_type'] : 'params';
+    $record_type = isset( $properties['wpcf7_crm_in_cloud_data']['input_type'] ) ? $properties['wpcf7_crm_in_cloud_data']['input_type'] : 'params';
+    if( $record_type == 'json' || $record_type == 'xml' ){
+      $template = $record_type == 'json' ? $properties['json_template'] : $properties['template'];
+      preg_match_all("/\[(\w+(-\d+)?)\]/", $template, $matches, PREG_PATTERN_ORDER); 
+      $properties['wpcf7_crm_in_cloud_data_map'] = array_merge(array_fill_keys($matches[1], ''), $properties['wpcf7_crm_in_cloud_data_map']);
+    }
+    
     $contact_form->set_properties( $properties );
 
   }
@@ -365,6 +375,7 @@ endif;
    */
   function get_record( $submission , $qs_cf7_data_map , $type = "json", $template = "" ){
     $submited_data = $submission->get_posted_data();
+   //TODO: implement upload file -> https://github.com/kennym/cf7-to-api/commit/1e47b9179ec1d6878e64efdedcb800dc83ab7ebb    
     $record = array();
 
 
@@ -381,14 +392,27 @@ endif;
         }else{
 
           $value = isset($submited_data[$form_key]) ? $submited_data[$form_key] : "";
+          
+          $value = preg_replace('/\r|\n/', '\\n', $value);
+          $value = str_replace('\\n\\n', '\n', $value);
 
-
-          //flattan radio
+          //flatten radio
           if( is_array( $value ) ){
-            $value = reset( $value );
+            if(count($value)  == 1)
+              $value = reset( $value );
+            else 
+              $value = implode(";",$value);
+          }
+           // handle boolean acceptance fields
+           if( $this->isAcceptanceField($form_key) ) {
+            $value = $value == "" ? "false" : "true";
           }
 
-          $template = str_replace( "[{$form_key}]", $value, $template );
+          //$template = str_replace( "[{$form_key}]", $value, $template );
+
+          // replace "[$form_key]" with json-encoded value
+          $template = preg_replace( "/(\")?\[{$form_key}\](\")?/", json_encode($value), $template );
+
         }
       }
 
@@ -474,8 +498,29 @@ endif;
       if ( isset($api_key) && $api_key !== '' ) {
         $args['headers']['ApiKey'] = $api_key;
       }
-
+        //$args['headers']['Crm-WebApiRules'] = 'LeadMustBeUniqueByEmail=true'; 
         $args['headers']['Content-Type'] = 'application/json'; 
+		
+		// https://app.crmincloud.it/api/v1/Docs/en/Home#Options
+    $args['headers']['Crm-TagsStyle'] = 'AdaptiveStringOnlyName';		
+		$args['headers']['Crm-EmailStyle'] = 'ValueOnly';
+		$args['headers']['Crm-PhoneStyle'] = 'ValueOnly';
+		$args['headers']['Crm-LeadCategoriesStyle'] = 'AdaptiveStringOnlyName';
+		$args['headers']['Crm-FreeFieldsStyle'] = 'AsValueOnlyParentProperties';
+		$args['headers']['Crm-LeadPriorityIdStyle'] = 'AdaptiveStringOnlyDescription';
+		$args['headers']['Crm-LeadProductInterestIdStyle'] = 'AdaptiveStringOnlyDescription';
+		$args['headers']['Crm-LeadRatingIdStyle'] = 'AdaptiveStringOnlyDescription';
+		$args['headers']['Crm-LeadStatusIdStyle'] = 'AdaptiveStringOnlyDescription';
+		$args['headers']['Crm-GlobalEnumStyle'] = 'AdaptiveString';
+		$args['headers']['Crm-AnagraphicIndustryIdStyle'] = 'AdaptiveStringOnlyDescription';
+		$args['headers']['Crm-CommercialZoneStyle'] = 'AdaptiveStringOnlyCode';
+		$args['headers']['Crm-BusinessRolesStyle'] = 'AdaptiveStringOnlyName';
+		$args['headers']['Crm-AnagraphicSourceIdStyle'] = 'AdaptiveStringOnlyDescription';
+		$args['headers']['Crm-AnagraphicCompanyTypeIdStyle'] = 'AdaptiveStringOnlyDescription';
+		$args['headers']['Crm-CompanyCategoriesStyle'] = 'AdaptiveStringOnlyName';
+		$args['headers']['Crm-ContactCategoriesStyle'] = 'AdaptiveStringOnlyName';
+		$args['headers']['Crm-SalesPersonsStyle'] = 'AdaptiveStringOnlyUserAccount';
+		$args['headers']['PrivacyTypeManagementIdStyle'] = 'AdaptiveStringOnlyCode';		
 
         $json = $this->parse_json( $lead );
         if( is_wp_error( $json ) ){
@@ -514,6 +559,21 @@ endif;
 
     return new WP_Error( 'json-error' , json_last_error() );
 
+  }
+
+  /**
+   * @param string $field_name
+   * @return bool
+   */
+  private function isAcceptanceField($field_name) {
+    $field = $this->post->scan_form_tags(
+      array(
+        'type' => 'acceptance',
+        'name' => $field_name
+      )
+    );
+
+    return count($field) == 1;
   }
 
 }
