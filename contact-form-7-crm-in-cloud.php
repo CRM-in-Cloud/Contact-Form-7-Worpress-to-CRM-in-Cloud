@@ -11,7 +11,7 @@
  * Plugin Name:       Contact Form 7 CRM in Cloud
  * Plugin URI:        https://github.com/CRM-in-Cloud/
  * Description:       Connect contact Frms 7 to CRM in Cloud.
- * Version:           1.0.2
+ * Version:           1.0.3
  * Author:            Stefano Straus base on hard work of Kenny Meyer (https://www.kennymeyer.net)
  * Author URI: 		  https://www.crmincloud.it
  * License:           GPL-2.0+
@@ -73,7 +73,7 @@ function qs_init_cf7_crm_in_cloud() {
     global $qs_cf7_crm_in_cloud;
 
 	$qs_cf7_crm_in_cloud = new QS_CF7_atp_integration();
-	$qs_cf7_crm_in_cloud->version = '1.0.2';
+	$qs_cf7_crm_in_cloud->version = '1.0.3';
 	$qs_cf7_crm_in_cloud->plugin_basename = plugin_basename( __FILE__ );
 
 	$qs_cf7_crm_in_cloud->init();

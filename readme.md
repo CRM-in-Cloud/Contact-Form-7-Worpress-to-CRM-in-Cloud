@@ -1,9 +1,5 @@
 # Contact Form 7 Wordpress to CRM in Cloud
 
-# Attenzione
-Con il rilascio di **Contact Form 7 versione 5.5.*** il connettore del CRM smette di funzionare se si apportano modifiche allo schema salvato o alla prima configurazione.
-Siamo in attesa di un _fix_ su **CF7**, nel frattempo consigliamo di rimanere sulla versione **5.4.2**. Per ripristinarla in caso di aggiornamento utilizzare il plugin **WP Rollback**
-
 ## Descrizione
 Un addon di **Wordpress** per trasferire i dati delle form compilate in Contact Form 7 a CRM in Cloud
 
@@ -21,11 +17,17 @@ il nostro plugin è un estensione di quest'ultimo.
 
 ## Changelog
 
+### 1.0.3
+* Corretto problema di compatibilità con CF7 5.5
+
 ### 1.0.2
 * Supporto nuove API adaptive
 
 ### 1.0.0
 * Primo rilascio.
+
+### 1.0.1
+* Fix sample privacy.
 
 ## Credits
 This plugin has been adapter from https://github.com/kennym/cf7-to-api

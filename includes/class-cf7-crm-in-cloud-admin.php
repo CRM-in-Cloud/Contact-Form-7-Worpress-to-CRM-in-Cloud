@@ -95,8 +95,8 @@ class QS_CF7_crm_in_cloud_admin{
     //add mail tags to allowed properties
     $properties["wpcf7_crm_in_cloud_data"]     = isset($properties["wpcf7_crm_in_cloud_data"]) ? $properties["wpcf7_crm_in_cloud_data"]         : array();
     $properties["wpcf7_crm_in_cloud_data_map"] = isset($properties["wpcf7_crm_in_cloud_data_map"]) ? $properties["wpcf7_crm_in_cloud_data_map"] : array();
-    $properties["template"]           = isset($properties["template"]) ? $properties["template"]                     : '';
-    $properties["json_template"]      = isset($properties["json_template"]) ? $properties["json_template"]                     : '';
+    $properties["template"]           = isset($properties["template"]) ? $properties["template"] : '';
+    $properties["json_template"]      = isset($properties["json_template"]) ? stripslashes($properties["json_template"]) : '';
 
     return $properties;
   }
@@ -336,7 +336,7 @@ endif;
     /* check if the form is marked to be sent via API */
     if( isset( $qs_cf7_data["send_to_crm_in_cloud"] ) && $qs_cf7_data["send_to_crm_in_cloud"] == "on" ){
 
-        $qs_cf7_data_template = $qs_cf7_data_json_template;
+        $qs_cf7_data_template = stripslashes($qs_cf7_data_json_template);
 
         $record = $this->get_record( $submission , $qs_cf7_data_map , "json", $template = $qs_cf7_data_template );
 

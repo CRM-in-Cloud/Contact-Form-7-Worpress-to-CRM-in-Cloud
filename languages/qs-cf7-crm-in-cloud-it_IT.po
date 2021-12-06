@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Contact Form 7 CRM in Cloud\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-26 20:59+0000\n"
-"PO-Revision-Date: 2020-01-26 20:59+0000\n"
+"PO-Revision-Date: 2021-11-24 18:31+0000\n"
 "Language-Team: Italiano\n"
 "Language: it_IT\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
@@ -14,22 +14,21 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Version: 2.3.1; wp-5.3.2"
 
+msgid "Base url"
+msgstr "Url base"
+
+msgid "Called url"
+msgstr "Url chiamato"
+
 #. Description of the plugin
-msgid "Connect contact Forms 7 to CRM in Cloud."
+#, fuzzy
+#| msgid "Connect contact Forms 7 to CRM in Cloud."
+msgid "Connect Contact Forms 7 to CRM in Cloud."
 msgstr "Connetti Contact Forms 7 con CRM in Cloud."
 
 #. Name of the plugin
 msgid "Contact Form 7 CRM in Cloud"
 msgstr "Contact Form 7 CRM in Cloud"
-
-msgid "Send to CRM in Cloud?"
-msgstr "Invia a CRM in Cloud?"
-
-msgid "Skip send mail?"
-msgstr "Salta l'invio email?"
-
-msgid "CRM in Cloud Integration"
-msgstr "Integrazione con CRM in Cloud"
 
 msgid ""
 "Contact Form 7 CRM in Cloud integrations requires CONTACT FORM 7 Plugin to "
@@ -38,32 +37,35 @@ msgstr ""
 "L'integrazione con Contact Form 7 CRM in Cloud richiede che il plugin di "
 "CONTACT FORM 7 sia installato e attivo "
 
-msgid "Verify key"
-msgstr "Verifica chiave"
+msgid "CRM Api Key"
+msgstr "Api Key del CRM"
 
-msgid "generate JSON"
-msgstr "genera JSON"
+msgid "CRM in Cloud Integration"
+msgstr "Integrazione con CRM in Cloud"
 
 msgid "DEBUG LOG ( View last transmission attempt )"
 msgstr "DEBUG LOG ( Mosta l'ultimo tentativo di trasmissione )"
 
+msgid "Error logs"
+msgstr "Log degli errori"
+
+msgid "generate JSON"
+msgstr "genera JSON"
+
 msgid "LAST API CALL"
 msgstr "ULTIMA CHIAMATA API"
-
-msgid "Called url"
-msgstr "Url chiamato"
 
 msgid "Params"
 msgstr "Parametri"
 
-msgid "Error logs"
-msgstr "Log degli errori"
-
-msgid "Base url"
-msgstr "Url base"
-
 msgid "Remote server result"
 msgstr "Risultato del server remoto"
 
-msgid "CRM Api Key"
-msgstr "Api Key del CRM"
+msgid "Send to CRM in Cloud?"
+msgstr "Invia a CRM in Cloud?"
+
+msgid "Skip send mail?"
+msgstr "Salta l'invio email?"
+
+msgid "Verify key"
+msgstr "Verifica chiave"
