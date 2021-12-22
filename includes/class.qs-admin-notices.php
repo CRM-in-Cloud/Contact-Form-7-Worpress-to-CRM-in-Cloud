@@ -47,7 +47,7 @@ class QS_Admin_notices{
      */
     public function load_admin_scripts(){
 
-        wp_register_style( 'qs-cf7-crm-in-cloud-admin-notices-css', QS_CF7_CRM_IN_CLOUD_ADMIN_CSS_URL . 'admin-notices-style.css' , false , '1.0.3' );
+        wp_register_style( 'qs-cf7-crm-in-cloud-admin-notices-css', QS_CF7_CRM_IN_CLOUD_ADMIN_CSS_URL . 'admin-notices-style.css' , false , '1.0.4' );
 
         wp_enqueue_style( 'qs-cf7-crm-in-cloud-admin-notices-css' );
 
