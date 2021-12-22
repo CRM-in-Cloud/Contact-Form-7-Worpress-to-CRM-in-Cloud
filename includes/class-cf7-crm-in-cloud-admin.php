@@ -505,8 +505,8 @@ endif;
 		
 		// https://app.crmincloud.it/api/v1/Docs/en/Home#Options
     $args['headers']['Crm-TagsStyle'] = 'AdaptiveStringOnlyName';		
-		$args['headers']['Crm-EmailStyle'] = 'ValueOnly';
-		$args['headers']['Crm-PhoneStyle'] = 'ValueOnly';
+		$args['headers']['Crm-EmailStyle'] = 'Csv';
+		$args['headers']['Crm-PhoneStyle'] = 'Csv';
 		$args['headers']['Crm-LeadCategoriesStyle'] = 'AdaptiveStringOnlyName';
 		$args['headers']['Crm-FreeFieldsStyle'] = 'AsValueOnlyParentProperties';
 		$args['headers']['Crm-LeadPriorityIdStyle'] = 'AdaptiveStringOnlyDescription';
